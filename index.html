@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Andre - Web Developer, PHP & Python Coder, Graphic Artist from the Philippines." />
+  <title>Andre | Developer Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #030712;
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(37, 99, 235, .30), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(168, 85, 247, .22), transparent 28%),
+        radial-gradient(circle at 50% 85%, rgba(14, 165, 233, .18), transparent 32%),
+        #030712;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+    }
+
+    .particles span {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #d946ef;
+      box-shadow: 0 0 18px #d946ef;
+      animation: float 5s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(-10px); opacity: .25; }
+      50% { transform: translateY(20px); opacity: 1; }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      background: rgba(2, 6, 23, .75);
+      backdrop-filter: blur(18px);
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      color: #22d3ee;
+      text-decoration: none;
+    }
+
+    .logo span { color: #d946ef; }
+
+    nav {
+      display: flex;
+      gap: 26px;
+    }
+
+    nav a {
+      color: #cbd5e1;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: .3s;
+    }
+
+    nav a:hover { color: #22d3ee; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid rgba(34, 211, 238, .55);
+      color: #cffafe;
+      background: rgba(255,255,255,.04);
+      transition: .3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: rgba(34, 211, 238, .12);
+      box-shadow: 0 0 25px rgba(34, 211, 238, .22);
+    }
+
+    .btn.primary {
+      border: none;
+      color: white;
+      background: linear-gradient(90deg, #06b6d4, #8b5cf6, #d946ef);
+      box-shadow: 0 0 30px rgba(14, 165, 233, .25);
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 50px;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      color: #67e8f9;
+      font-family: monospace;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(60px, 10vw, 120px);
+      line-height: .9;
+      font-weight: 950;
+      background: linear-gradient(90deg, #22d3ee, #3b82f6, #d946ef);
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -5px;
+    }
+
+    .typing {
+      margin-top: 22px;
+      font-family: monospace;
+      color: #67e8f9;
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 800;
+      border-right: 3px solid #22d3ee;
+      width: max-content;
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 4s steps(55) infinite alternate, blink .7s infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .hero p.desc {
+      margin-top: 28px;
+      max-width: 620px;
+      color: #cbd5e1;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .actions {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .socials {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .socials a {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #e2e8f0;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      text-decoration: none;
+      transition: .3s;
+    }
+
+    .socials a:hover {
+      color: #22d3ee;
+      border-color: #22d3ee;
+      transform: translateY(-3px);
+    }
+
+    .hero-card {
+      aspect-ratio: 1;
+      border-radius: 36px;
+      padding: 28px;
+      background: linear-gradient(135deg, rgba(34,211,238,.13), rgba(2,6,23,.8), rgba(217,70,239,.15));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 30px 80px rgba(88, 28, 135, .35);
+      backdrop-filter: blur(18px);
+      animation: pulseGlow 4s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .inner-card {
+      height: 100%;
+      border-radius: 28px;
+      padding: 32px;
+      background: rgba(0,0,0,.30);
+      border: 1px solid rgba(255,255,255,.10);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .code-icon {
+      width: 86px;
+      height: 86px;
+      border-radius: 28px;
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      background: linear-gradient(135deg, #22d3ee, #d946ef);
+      color: white;
+      margin-bottom: 26px;
+    }
+
+    .code-text {
+      font-family: monospace;
+      color: #a5f3fc;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.5;
+      font-weight: 900;
+    }
+
+    .terminal {
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 16px;
+      font-family: monospace;
+      color: #cbd5e1;
+    }
+
+    section {
+      padding: 40px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(2, 6, 23, .62);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 26px;
+      padding: 26px;
+      box-shadow: 0 20px 55px rgba(30, 64, 175, .16);
+      backdrop-filter: blur(18px);
+      animation: fadeUp both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 25%;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(35px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 22px;
+      color: #60a5fa;
+    }
+
+    h2.pink { color: #e879f9; }
+
+    .card p {
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 32px;
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .bar {
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22d3ee, #d946ef);
+      animation: grow 1.8s ease forwards;
+      width: var(--w);
+    }
+
+    @keyframes grow {
+      from { width: 0; }
+      to { width: var(--w); }
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.1);
+      transition: .3s;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      border-color: rgba(34,211,238,.45);
+    }
+
+    .thumb {
+      height: 130px;
+      border-radius: 18px;
+      margin-bottom: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      color: #67e8f9;
+      background: linear-gradient(135deg, rgba(37,99,235,.22), rgba(217,70,239,.22));
+    }
+
+    .project h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      min-height: 86px;
+      font-size: 14px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .badges span {
+      font-size: 12px;
+      color: #e2e8f0;
+      padding: 6px 9px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .project-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .mini-btn {
+      border-radius: 10px;
+      border: 1px solid rgba(34,211,238,.45);
+      color: #cffafe;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .3s;
+    }
+
+    .mini-btn:hover {
+      background: rgba(34,211,238,.12);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 24px;
+    }
+
+    .timeline {
+      border-left: 1px solid rgba(59,130,246,.45);
+      padding-left: 22px;
+    }
+
+    .timeline-item {
+      margin-bottom: 26px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -29px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: #3b82f6;
+      border-radius: 50%;
+      box-shadow: 0 0 18px #3b82f6;
+    }
+
+    .timeline-item h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .service {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .service .icon {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .service h3 {
+      margin-bottom: 8px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .contact-box {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      text-decoration: none;
+      color: #e5e7eb;
+      transition: .3s;
+    }
+
+    .contact-box:hover {
+      border-color: #22d3ee;
+      background: rgba(34,211,238,.10);
+      transform: translateY(-4px);
+    }
+
+    .contact-box .icon {
+      font-size: 28px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 34px 0;
+      color: #94a3b8;
+    }
+
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .up {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 0 30px rgba(37,99,235,.4);
+    }
+
+    @media (max-width: 900px) {
+      nav { display: none; }
+
+      .hero,
+      .grid-3,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        display: none;
+      }
+
+      .skills,
+      .projects,
+      .service-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .typing {
+        white-space: normal;
+        width: auto;
+        animation: blink .7s infinite;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .btn.hide-mobile {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="particles">
+    <span style="left:5%;top:20%;animation-delay:.1s"></span>
+    <span style="left:14%;top:70%;animation-delay:.8s"></span>
+    <span style="left:25%;top:35%;animation-delay:1.2s"></span>
+    <span style="left:40%;top:80%;animation-delay:.4s"></span>
+    <span style="left:52%;top:18%;animation-delay:1.5s"></span>
+    <span style="left:63%;top:64%;animation-delay:.9s"></span>
+    <span style="left:73%;top:28%;animation-delay:1.8s"></span>
+    <span style="left:85%;top:75%;animation-delay:.2s"></span>
+    <span style="left:94%;top:40%;animation-delay:1s"></span>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a href="#home" class="logo">Andre<span>.</span></a>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="btn hide-mobile" href="#">⬇ Download CV</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="container hero">
+      <div>
+        <div class="eyebrow">/// Hello, I'm</div>
+        <h1>Andre</h1>
+        <div class="typing">Web Developer | PHP & Python Coder | Graphic Artist</div>
+
+        <p class="desc">
+          I'm an introverted but passionate developer from the Philippines. I build modern websites,
+          web systems, HTML5 projects, and creative designs. I also set up VPS, manage Linux servers,
+          and love creating clean digital experiences.
+        </p>
+
+        <div class="actions">
+          <a href="#projects" class="btn primary">View My Work →</a>
+          <a href="#contact" class="btn">Hire Me</a>
+        </div>
+
+        <div class="socials">
+          <a href="#" title="GitHub">GH</a>
+          <a href="#" title="Facebook">FB</a>
+          <a href="#" title="Messenger">MS</a>
+          <a href="#" title="Email">@</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="inner-card">
+          <div>
+            <div class="code-icon">&lt;/&gt;</div>
+            <div class="code-text">
+              // CODE<br />
+              // DESIGN<br />
+              // DEPLOY<br />
+              // REPEAT
+            </div>
+          </div>
+
+          <div class="terminal">
+            <span style="color:#e879f9;">developer</span>@philippines:~$ build --portfolio
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container grid-3">
+      <div id="about" class="card">
+        <h2>About Me</h2>
+        <p>
+          I'm an introverted developer who enjoys solving problems and building digital things that matter.
+          My coding journey started during the WAP era, creating mobile community sites using scripts like Lavalair.
+        </p>
+        <br />
+        <p>
+          Since then, I continued exploring PHP, MySQL, Python, HTML5, CSS, JavaScript, VPS hosting,
+          Linux servers, AI tools, and creative design.
+        </p>
+        <br />
+        <p style="color:#67e8f9;">📍 Philippines</p>
+      </div>
+
+      <div id="skills" class="card">
+        <h2 class="pink">Skills</h2>
+
+        <div class="skills">
+          <div><div class="skill-top"><span>PHP</span><span>90%</span></div><div class="bar"><span style="--w:90%"></span></div></div>
+          <div><div class="skill-top"><span>Python</span><span>85%</span></div><div class="bar"><span style="--w:85%"></span></div></div>
+          <div><div class="skill-top"><span>MySQL</span><span>85%</span></div><div class="bar"><span style="--w:85%"></span></div></div>
+          <div><div class="skill-top"><span>HTML5</span><span>95%</span></div><div class="bar"><span style="--w:95%"></span></div></div>
+          <div><div class="skill-top"><span>CSS3</span><span>90%</span></div><div class="bar"><span style="--w:90%"></span></div></div>
+          <div><div class="skill-top"><span>JavaScript</span><span>85%</span></div><div class="bar"><span style="--w:85%"></span></div></div>
+          <div><div class="skill-top"><span>Linux VPS</span><span>80%</span></div><div class="bar"><span style="--w:80%"></span></div></div>
+          <div><div class="skill-top"><span>Graphic Design</span><span>85%</span></div><div class="bar"><span style="--w:85%"></span></div></div>
+          <div><div class="skill-top"><span>Web Development</span><span>95%</span></div><div class="bar"><span style="--w:95%"></span></div></div>
+          <div><div class="skill-top"><span>Responsive Design</span><span>90%</span></div><div class="bar"><span style="--w:90%"></span></div></div>
+          <div><div class="skill-top"><span>AI-assisted Coding</span><span>80%</span></div><div class="bar"><span style="--w:80%"></span></div></div>
+          <div><div class="skill-top"><span>Facebook Ads</span><span>75%</span></div><div class="bar"><span style="--w:75%"></span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="container">
+      <div class="card">
+        <h2>Projects</h2>
+
+        <div class="projects">
+          <div class="project">
+            <div class="thumb">💬</div>
+            <h3>Real-time Chat System</h3>
+            <p>A real-time chat application with private messaging, user accounts, and clean UI.</p>
+            <div class="badges"><span>PHP</span><span>MySQL</span><span>JS</span></div>
+            <div class="project-buttons"><a class="mini-btn" href="#">Live</a><a class="mini-btn" href="#">GitHub</a></div>
+          </div>
+
+          <div class="project">
+            <div class="thumb">🚀</div>
+            <h3>HTML5 Strategy Game</h3>
+            <p>A strategy game concept inspired by classic browser games and kingdom map systems.</p>
+            <div class="badges"><span>HTML5</span><span>JS</span><span>Canvas</span></div>
+            <div class="project-buttons"><a class="mini-btn" href="#">Live</a><a class="mini-btn" href="#">GitHub</a></div>
+          </div>
+
+          <div class="project">
+            <div class="thumb">📱</div>
+            <h3>WAP / XTGem Projects</h3>
+            <p>Legacy mobile community sites from the WAP era using scripts like Lavalair.</p>
+            <div class="badges"><span>WAP</span><span>PHP</span><span>Lavalair</span></div>
+            <div class="project-buttons"><a class="mini-btn" href="#">Live</a><a class="mini-btn" href="#">GitHub</a></div>
+          </div>
+
+          <div class="project">
+            <div class="thumb">🖥️</div>
+            <h3>VPS Hosting Setup</h3>
+            <p>Linux VPS setup, domains, SSL, server management, and web deployment.</p>
+            <div class="badges"><span>Linux</span><span>VPS</span><span>Nginx</span></div>
+            <div class="project-buttons"><a class="mini-btn" href="#">Live</a><a class="mini-btn" href="#">GitHub</a></div>
+          </div>
+
+          <div class="project">
+            <div class="thumb">👤</div>
+            <h3>Personal Portfolio</h3>
+            <p>A cyberpunk-inspired developer portfolio built with modern responsive design.</p>
+            <div class="badges"><span>HTML</span><span>CSS</span><span>JS</span></div>
+            <div class="project-buttons"><a class="mini-btn" href="#">Live</a><a class="mini-btn" href="#">GitHub</a></div>
+          </div>
+
+          <div class="project">
+            <div class="thumb">🌐</div>
+            <h3>Mobile Web Apps</h3>
+            <p>Responsive mobile-first web applications for personal and business use.</p>
+            <div class="badges"><span>PHP</span><span>JS</span><span>CSS3</span></div>
+            <div class="project-buttons"><a class="mini-btn" href="#">Live</a><a class="mini-btn" href="#">GitHub</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container two-col">
+      <div id="experience" class="card">
+        <h2>Experience</h2>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>Government Administrative & Technical Experience</h3>
+            <p>Handled administrative tasks, document management, ICT support, and system assistance.</p>
+          </div>
+
+          <div class="timeline-item">
+            <h3>Web Developer / IT Support</h3>
+            <p>Developed websites, web systems, and provided technical support for local projects.</p>
+          </div>
+
+          <div class="timeline-item">
+            <h3>WAP Developer</h3>
+            <p>Created mobile community sites, guestbooks, forums, and utilities during the early mobile internet era.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="services" class="card">
+        <h2 class="pink">Services</h2>
+
+        <div class="service-grid">
+          <div class="service"><div class="icon">🌐</div><h3>Website Development</h3><p>Custom websites built with clean code and modern technologies.</p></div>
+          <div class="service"><div class="icon">👤</div><h3>Portfolio Websites</h3><p>Personal portfolio websites to showcase your skills and projects.</p></div>
+          <div class="service"><div class="icon">🚀</div><h3>Landing Pages</h3><p>High-converting landing pages for businesses and campaigns.</p></div>
+          <div class="service"><div class="icon">🖥️</div><h3>VPS Setup</h3><p>Linux VPS setup, server management, and performance tuning.</p></div>
+          <div class="service"><div class="icon">🎨</div><h3>Graphic Design</h3><p>Basic graphics for banners, logos, and social media.</p></div>
+          <div class="service"><div class="icon">🗄️</div><h3>PHP / MySQL Systems</h3><p>Custom PHP and MySQL web systems tailored to your needs.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <div class="card">
+        <h2>Contact Me</h2>
+        <p>Let's work together! Feel free to reach out.</p>
+        <br />
+
+        <div class="contact-grid">
+          <a class="contact-box" href="#"><span class="icon">📘</span><span><b>Facebook</b><br /><small>/andre.dev</small></span></a>
+          <a class="contact-box" href="mailto:andre.dev.ph@gmail.com"><span class="icon">📧</span><span><b>Email</b><br /><small>andre.dev.ph@gmail.com</small></span></a>
+          <a class="contact-box" href="#"><span class="icon">💻</span><span><b>GitHub</b><br /><small>/andredev</small></span></a>
+          <a class="contact-box" href="#"><span class="icon">💬</span><span><b>Messenger</b><br /><small>Send Message</small></span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-flex">
+      <div><a class="logo" href="#home">Andre<span>.</span></a><br />Code. Design. Deploy. Repeat.</div>
+      <div>© 2026 Andre. All rights reserved.</div>
+      <div>Made with ❤️ in the Philippines 🇵🇭</div>
+    </div>
+  </footer>
+
+  <a class="up" href="#home">↑</a>
+</body>
+</html>
